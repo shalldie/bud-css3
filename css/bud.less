@@ -1,0 +1,169 @@
+.transform(@args){
+    -webkit-transform: @args;
+    -o-transform: @args;
+    -moz-transform: @args;
+    transform:@args;
+}
+
+.animation(@args){
+    -webkit-animation: @args;
+    -o-animation: @args;
+    -moz-animation: @args;
+    animation:@args;
+}
+
+.perspective(@args:800px){    
+    -webkit-perspective: @args;
+    -o-perspective: @args;
+    -moz-perspective: @args;
+    perspective:@args;
+}
+
+.transform-style(@args:preserve-3d){
+    -webkit-transform-style: @args;
+    -o-transform-style: @args;
+    -moz-transform-style: @args;
+    transform-style:@args;    
+}
+
+.transform-origin(@args:center center){
+    -webkit-transform-origin:@args;
+    -o-transform-origin:@args;
+    -moz-transform-origin:@args;
+    transform-origin:@args;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background-color:#0a0a0a;
+    background-image:linear-gradient(90deg,#292828 1px,transparent 1px), linear-gradient(180deg,#292828 1px,transparent 1px);
+    background-size:40px 40px; 
+    position:relative;
+    overflow: hidden;
+}
+
+
+
+.demo{
+    width:60px;
+    height:60px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    .transform(translateX(-50%) translateY(-50%));
+    .perspective(800px);
+    .transform-style;
+    
+}
+
+.bud-wrap{
+    position:relative;
+    width:60px;
+    height:60px;
+    .transform-style;
+    .perspective;
+    .animation(filterGradient 5s linear infinite alternate); 
+    &,& *{
+        box-sizing: border-box;
+        .transform-style;
+    }
+    
+    .bud-center{
+        position:relative;
+        width:60px;
+        height:60px;
+        border-radius:100%;
+        background-color:hsl(10,100%,20%);
+        .animation(rotateFlower 6s linear infinite);
+        // .transform-style;
+        
+        .bud-petal{
+            position:absolute;
+            left:30px;
+            top:30px;
+            padding-top:210px;
+            width:20px;
+            // .transform-style;
+            
+            .transform-origin(center top); 
+            
+            .forPetalAngle(@i:1,@sum:6) when(@i<@sum+1){  // 花瓣角度
+                &:nth-child(@{i}){
+                    .transform(translateX(-50%) translateZ(-220px)  rotateZ(60deg*(@i - 1)) rotateX(82deg) );
+                }
+                .forPetalAngle(@i+1,@sum); 
+            }
+            
+            .forPetalAngle;
+            
+            
+            .bud-box{
+                // .transform-style;
+                // position:absolute;
+                width:20px;
+                height:20px;
+                // background-color:#2ad;
+                // color:#2ad;
+                transform-origin: center top;
+                .animation(extPetal 6s ease infinite alternate);
+            }
+            
+            .bud-shape{
+                width:20px;
+                height:20px;
+                background-color:#2ad;
+                color:#2ad;
+                border-radius:100%;
+                box-shadow:
+                -40px 0 0 0,
+                -20px 0 0 0, 
+                20px 0 0 0,
+                40px 0 0 0; 
+            }
+        }
+    }
+}
+
+
+// 滤镜颜色渐变
+
+@keyframes filterGradient{
+    100%{
+        -webkit-filter:hue-rotate(360deg); 
+        filter:hue-rotate(360deg);
+    }
+}
+
+@keyframes rotateFlower{    
+    0%{
+        .transform(rotateX(50deg) rotateZ(0deg));
+    }
+    100%{
+        .transform(rotateX(50deg) rotateZ(360deg));
+    }
+}
+
+@keyframes extPetal{
+    0%{
+        .transform(rotateX(-7deg))        
+    }
+    20%{
+        .transform(rotateX(-7deg))    
+    }
+    80%{        
+        .transform(rotateX(1.4deg))
+    }
+    100%{        
+        .transform(rotateX(1.4deg))
+    }
+}
