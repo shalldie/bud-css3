@@ -8,7 +8,7 @@ String.prototype.format = function () {
 
 var size = 26;     //最大宽度
 var sum = 22;      //层级数量
-var widMin = 2;  //最小宽度
+var widMin = 4;  //最小宽度
 var sizePer = 0.82; //每级宽高比
 
 function createNode(nodeType, className, styles) {   //创建节点快捷方法
