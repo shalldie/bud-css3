@@ -33,6 +33,10 @@ body {
   -o-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  -webkit-animation: filterGradient 5s linear infinite alternate;
+  -o-animation: filterGradient 5s linear infinite alternate;
+  -moz-animation: filterGradient 5s linear infinite alternate;
+  animation: filterGradient 5s linear infinite alternate;
 }
 .bud-wrap {
   position: relative;
@@ -46,10 +50,6 @@ body {
   -o-perspective: 800px;
   -moz-perspective: 800px;
   perspective: 800px;
-  -webkit-animation: filterGradient 5s linear infinite alternate;
-  -o-animation: filterGradient 5s linear infinite alternate;
-  -moz-animation: filterGradient 5s linear infinite alternate;
-  animation: filterGradient 5s linear infinite alternate;
 }
 .bud-wrap,
 .bud-wrap * {
